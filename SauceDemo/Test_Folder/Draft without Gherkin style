@@ -1,0 +1,57 @@
+# ============================================================================
+#    Open Browser   ${url}   ${browser}
+#    Input Text    id=user-name      ${username}
+#    Input Password    id=password    ${password}
+#    Click Element    id=login-button
+#    Click Element    id=add-to-cart-sauce-labs-backpack
+#    Click Element    id=add-to-cart-sauce-labs-bike-light
+#    Click Element    id=add-to-cart-sauce-labs-bolt-t-shirt
+#    Sleep   3
+#    Element Should Contain    //span[@data-test="shopping-cart-badge"]    3
+#    Close Browser
+
+# ============================================================================
+#    Open Browser   ${url}   ${browser}
+#    Input Text    id=user-name      ${username}
+#    Input Password    id=password    ${password}
+#    Click Element    id=login-button
+#    Click Element    id=add-to-cart-sauce-labs-backpack
+#    Click Element    id=add-to-cart-sauce-labs-bike-light
+#    Click Element    id=add-to-cart-sauce-labs-bolt-t-shirt
+#    Sleep   3
+#    Element Should Contain    //span[@data-test="shopping-cart-badge"]    3
+#    Click Element    //div[@id="shopping_cart_container"]
+#    Element Text Should Be    //a[@id="item_0_title_link"]    Sauce Labs Bike Light
+#    Element Text Should Be    //a[@id="item_4_title_link"]    Sauce Labs Backpack
+#    Element Text Should Be    //a[@id="item_1_title_link"]    Sauce Labs Bolt T-Shirt
+#    Sleep   3
+#    Close Browser
+
+#Checkout: Finalize
+#    Open Browser   ${url}   ${browser}
+#    Input Text    id=user-name      ${username}
+#    Input Password    id=password    ${password}
+#    Click Element    id=login-button
+#    Click Element    id=add-to-cart-sauce-labs-backpack
+#    Click Element    id=add-to-cart-sauce-labs-bike-light
+#    Click Element    id=add-to-cart-sauce-labs-bolt-t-shirt
+#    Sleep   3
+#    Element Should Contain    //span[@data-test="shopping-cart-badge"]    3
+#    Click Element    //div[@id="shopping_cart_container"]
+#    Element Text Should Be    //a[@id="item_0_title_link"]    Sauce Labs Bike Light
+#    Element Text Should Be    //a[@id="item_4_title_link"]    Sauce Labs Backpack
+#    Element Text Should Be    //a[@id="item_1_title_link"]    Sauce Labs Bolt T-Shirt
+#    Sleep   3
+#    Click Element    id=checkout
+#    Input Text    id=first-name    Nicholas
+#    Input Text    id=last-name    Lingga
+#    Input Text    id=postal-code    123456
+#    Sleep    1
+#    Click Element    id=continue
+#    Element Text Should Be    //span[@class="title"]    Checkout: Overview
+#    Element Text Should Be    //div[@data-test="shipping-info-label"]    Shipping Information:
+#    Click Element    id=finish
+#    Element Text Should Be    //span[@class="title"]    Checkout: Complete!
+#    Element Should Be Visible        id=checkout_complete_container    Thank you for your order!
+#    Element Should Be Visible    id=back-to-products    Back Home
+#    Close Browser

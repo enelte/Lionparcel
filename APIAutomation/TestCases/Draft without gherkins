@@ -1,0 +1,8 @@
+get single valid user
+#    Create Session    mysession    ${base_url}
+#    ${response}=      GET On Session     mysession    /users/4
+#    Should Be Equal As Numbers    ${response.status_code}    200
+#    ${response_json}=    Convert To Dictionary    ${response.json()}
+#    ${email}=        Get From Dictionary    ${response_json['data']}    email
+#    Log    ${email}
+#    Should Be Equal    ${email}    eve.holt@reqres.in

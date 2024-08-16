@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.10.4 on win32)" generated="2024-08-15T11:32:53.416375" rpa="false" schemaversion="5">
+<suite id="s1" name="TestSuite" source="C:\Users\Lenovo\PycharmProjects\APIAutomation\TestCases\TestSuite.robot">
+<test id="s1-t1" name="get single valid user" line="15">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-08-15T11:32:53.655599" level="INFO">Creating Session using : alias=mysession, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-08-15T11:32:53.655599" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-08-15T11:32:53.912205" level="INFO">GET Request : url=https://reqres.in/api/users/4 
+ path_url=/api/users/4 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-08-15T11:32:53.912205" level="INFO">GET Response : url=https://reqres.in/api/users/4 
+ status=200, reason=OK 
+ headers={'Date': 'Thu, 15 Aug 2024 04:32:54 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1723693862&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=HRKpbNU%2BMyOdzhnqA7gU2OkvIRqKrrt2JO01jDG9kOE%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1723693862&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=HRKpbNU%2BMyOdzhnqA7gU2OkvIRqKrrt2JO01jDG9kOE%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"110-Xdg3LtI+q2zMxihHlfeIZQo/bvY"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '2512', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8b3676a61cd19cc3-SIN', 'Content-Encoding': 'gzip'} 
+ body={"data":{"id":4,"email":"eve.holt@reqres.in","first_name":"Eve","last_name":"Holt","avatar":"https://reqres.in/img/faces/4-image.jpg"},"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg time="2024-08-15T11:32:53.912205" level="INFO">C:\Users\Lenovo\PycharmProjects\APIAutomation\.venv\lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-08-15T11:32:53.912205" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/users/4</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-08-15T11:32:53.655599" elapsed="0.256606"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-08-15T11:32:53.921678" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-08-15T11:32:53.921678" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To Dictionary" owner="Collections">
+<msg time="2024-08-15T11:32:53.924903" level="INFO">${response_json} = {'data': {'id': 4, 'email': 'eve.holt@reqres.in', 'first_name': 'Eve', 'last_name': 'Holt', 'avatar': 'https://reqres.in/img/faces/4-image.jpg'}, 'support': {'url': 'https://reqres.in/#support-heading...</msg>
+<var>${response_json}</var>
+<arg>${response.json()}</arg>
+<doc>Converts the given ``item`` to a Python ``dict`` type.</doc>
+<status status="PASS" start="2024-08-15T11:32:53.921678" elapsed="0.003225"/>
+</kw>
+<kw name="Get From Dictionary" owner="Collections">
+<msg time="2024-08-15T11:32:53.926289" level="INFO">${email} = eve.holt@reqres.in</msg>
+<var>${email}</var>
+<arg>${response_json['data']}</arg>
+<arg>email</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<status status="PASS" start="2024-08-15T11:32:53.924903" elapsed="0.001386"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-08-15T11:32:53.926289" level="INFO">eve.holt@reqres.in</msg>
+<arg>${email}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-08-15T11:32:53.926289" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${email}</arg>
+<arg>eve.holt@reqres.in</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-08-15T11:32:53.926289" elapsed="0.001471"/>
+</kw>
+<status status="PASS" start="2024-08-15T11:32:53.655599" elapsed="0.272161"/>
+</test>
+<test id="s1-t2" name="get single invalid User" line="24">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-08-15T11:32:53.929649" level="INFO">Creating Session using : alias=mysession, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-08-15T11:32:53.929649" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-08-15T11:32:54.435606" level="INFO">GET Request : url=https://reqres.in/api/users/999 
+ path_url=/api/users/999 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-08-15T11:32:54.435606" level="INFO">GET Response : url=https://reqres.in/api/users/999 
+ status=404, reason=Not Found 
+ headers={'Date': 'Thu, 15 Aug 2024 04:32:55 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '2', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1723696375&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=QSas78PBfkXMaDEYx6Bf6wqNTLp%2Fa4qGsdVjpJ0SAoY%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1723696375&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=QSas78PBfkXMaDEYx6Bf6wqNTLp%2Fa4qGsdVjpJ0SAoY%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'EXPIRED', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '8b3676a6b8301910-SIN'} 
+ body={} 
+ </msg>
+<msg time="2024-08-15T11:32:54.435606" level="INFO">C:\Users\Lenovo\PycharmProjects\APIAutomation\.venv\lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-08-15T11:32:54.435606" level="FAIL">HTTPError: 404 Client Error: Not Found for url: https://reqres.in/api/users/999</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/users/999</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2024-08-15T11:32:53.930860" elapsed="0.504746">HTTPError: 404 Client Error: Not Found for url: https://reqres.in/api/users/999</status>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-08-15T11:32:54.435606" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-08-15T11:32:53.929126" elapsed="0.506480">HTTPError: 404 Client Error: Not Found for url: https://reqres.in/api/users/999</status>
+</test>
+<test id="s1-t3" name="Create user" line="29">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-08-15T11:32:54.444514" level="INFO">Creating Session using : alias=mysession, url=https://reqres.in/api, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-08-15T11:32:54.444514" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-08-15T11:32:54.444514" level="INFO">${headers} = {'Content-Type': 'application/json'}</msg>
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.444514" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-08-15T11:32:54.444514" level="INFO">${body} = {'name': 'morpheus', 'job': 'leader'}</msg>
+<var>${body}</var>
+<arg>name=morpheus</arg>
+<arg>job=leader</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.444514" elapsed="0.000000"/>
+</kw>
+<kw name="Post Request" owner="RequestsLibrary">
+<msg time="2024-08-15T11:32:54.444514" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2024-08-15T11:32:54.955478" level="INFO">POST Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '37'} 
+ body=b'{"name": "morpheus", "job": "leader"}' 
+ </msg>
+<msg time="2024-08-15T11:32:54.955478" level="INFO">POST Response : url=https://reqres.in/api/users 
+ status=201, reason=Created 
+ headers={'Date': 'Thu, 15 Aug 2024 04:32:55 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '84', 'Connection': 'keep-alive', 'Report-To': '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1723696375&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=QSas78PBfkXMaDEYx6Bf6wqNTLp%2Fa4qGsdVjpJ0SAoY%3D"}]}', 'Reporting-Endpoints': 'heroku-nel=https://nel.heroku.com/reports?ts=1723696375&amp;sid=c4c9725f-1ab0-44d8-820f-430df2718e11&amp;s=QSas78PBfkXMaDEYx6Bf6wqNTLp%2Fa4qGsdVjpJ0SAoY%3D', 'Nel': '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"54-iEH+0wxb2hRXMC8XvlHNHjI9jrM"', 'Via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Server': 'cloudflare', 'CF-RAY': '8b3676aa4e65ce2b-SIN'} 
+ body={"name":"morpheus","job":"leader","id":"696","createdAt":"2024-08-15T04:32:55.675Z"} 
+ </msg>
+<msg time="2024-08-15T11:32:54.955478" level="INFO">C:\Users\Lenovo\PycharmProjects\APIAutomation\.venv\lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-08-15T11:32:54.955478" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${ENDPOINT}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.444514" elapsed="0.510964"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-08-15T11:32:54.963586" level="INFO">${code} = 201</msg>
+<var>${code}</var>
+<arg>${response.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.962129" elapsed="0.001457"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${code}</arg>
+<arg>201</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.964091" elapsed="0.000000"/>
+</kw>
+<kw name="Convert To String" owner="BuiltIn">
+<msg time="2024-08-15T11:32:54.965467" level="INFO">${body} = {"name":"morpheus","job":"leader","id":"696","createdAt":"2024-08-15T04:32:55.675Z"}</msg>
+<var>${body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.964091" elapsed="0.001376"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${body}</arg>
+<arg>morpheus</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2024-08-15T11:32:54.965467" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-08-15T11:32:54.443387" elapsed="0.522080"/>
+</test>
+<status status="FAIL" start="2024-08-15T11:32:53.419637" elapsed="1.548514"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="1" skip="0" id="s1" name="TestSuite">TestSuite</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-08-15T11:32:54.444514" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+</errors>
+</robot>
