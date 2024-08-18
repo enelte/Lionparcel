@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="RobotProjectPreferences">
-    <option name="robotLanguageServerPython" value="/opt/homebrew/bin/python3" />
-    <option name="robotLanguageServerArgs" value="[&quot;--log-level=INFO&quot;]" />
-  </component>
-</project>
